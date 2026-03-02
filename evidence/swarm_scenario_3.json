@@ -1,0 +1,14 @@
+{
+  "scenario": "S3",
+  "scenario_name": "Expired token (identity reject)",
+  "agent_id": "researcher",
+  "decision": "REJECTED",
+  "reason": "Identity check failed: Token has expired",
+  "gate_fired": "identity",
+  "owasp_category": "ASI03 (Agent Impersonation)",
+  "inspection_findings": [],
+  "mmr_staged_id": 39184,
+  "mmr_event_id": "63cc43dd-b9c2-4d63-8e92-15777d389c93",
+  "leaf_hash": "0b6c1152b8c8146129d2ad974f7418bbf8292e14dd4a21df75964b3c1d0141c4",
+  "timestamp": 1772424643.8270593
+}

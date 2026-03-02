@@ -1,0 +1,14 @@
+{
+  "scenario": "S1",
+  "scenario_name": "Researcher READ (happy path)",
+  "agent_id": "researcher",
+  "decision": "APPROVED",
+  "reason": "All gates passed",
+  "gate_fired": "approved",
+  "owasp_category": "ASI07 (Inter-Agent Communication Integrity)",
+  "inspection_findings": [],
+  "mmr_staged_id": 39182,
+  "mmr_event_id": "5bbefa0d-a765-49e0-b626-01a430e5fae4",
+  "leaf_hash": "5486ff7bd8761f04c143dae16d161298aa46624df3fc4920209378f291f9c52d",
+  "timestamp": 1772424635.5354786
+}
