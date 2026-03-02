@@ -1,0 +1,77 @@
+{
+  "metadata": {
+    "python": "3.12.7 (tags/v3.12.7:0b05ead, Oct  1 2024, 03:06:41) [MSC v.1941 64 bit (AMD64)]",
+    "platform": "win32",
+    "ts": "2026-03-02T08:58:40Z"
+  },
+  "b1_concurrent": {
+    "sequential": {
+      "rps": 3669,
+      "p50": 0.284,
+      "p95": 0.392,
+      "p99": 0.713,
+      "decisions": {
+        "APPROVED": 723,
+        "REJECTED": 277
+      },
+      "gates": {
+        "approved": 723,
+        "contract": 157,
+        "inspector": 78,
+        "identity": 42
+      }
+    },
+    "concurrent": {
+      "10": {
+        "threads": 10,
+        "rps": 3124,
+        "p50": 0.29,
+        "p95": 0.483,
+        "p99": 18.329
+      },
+      "20": {
+        "threads": 20,
+        "rps": 2742,
+        "p50": 0.326,
+        "p95": 0.629,
+        "p99": 50.342
+      },
+      "50": {
+        "threads": 50,
+        "rps": 2743,
+        "p50": 0.317,
+        "p95": 0.642,
+        "p99": 20.576
+      }
+    },
+    "mmr_events": 3866,
+    "epochs": 38
+  },
+  "b2_signed_epochs": {
+    "epochs": 5,
+    "all_valid": true,
+    "tamper_detected": true,
+    "sign_p50_ms": 0.041,
+    "sign_p99_ms": 0.098,
+    "verify_p50_ms": 0.181,
+    "amortized_ms": 0.0004
+  },
+  "b3_failure_injection": {
+    "f1_mmr_unavailable": {
+      "PASS": true
+    },
+    "f2_corruption": {
+      "PASS": true
+    },
+    "f3_deletion": {
+      "PASS": true
+    },
+    "f4_replay": {
+      "PASS": true,
+      "known_limitation": true
+    },
+    "f5_contention": {
+      "PASS": true
+    }
+  }
+}

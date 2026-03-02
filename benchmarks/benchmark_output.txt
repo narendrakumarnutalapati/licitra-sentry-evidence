@@ -1,0 +1,62 @@
+LICITRA-SENTRY Benchmark Suite v1.0
+Python 3.12.7 (tags/v3.12.7:0b05ead, Oct  1 2024, 03:06:41) [MSC v.1941 64 bit (AMD64)]
+
+======================================================================
+BENCHMARK 1: Concurrent Agent Workload
+======================================================================
+
+--- Sequential Baseline (1000 requests) ---
+  3669 RPS | p50=0.284ms p95=0.392ms p99=0.713ms
+  Decisions: {'APPROVED': 723, 'REJECTED': 277} | Gates: {'approved': 723, 'contract': 157, 'inspector': 78, 'identity': 42}
+
+--- Concurrent (10 threads, 1000 requests) ---
+  3124 RPS | p50=0.29ms p95=0.483ms p99=18.329ms
+
+--- Concurrent (20 threads, 1000 requests) ---
+  2742 RPS | p50=0.326ms p95=0.629ms p99=50.342ms
+
+--- Concurrent (50 threads, 1000 requests) ---
+  2743 RPS | p50=0.317ms p95=0.642ms p99=20.576ms
+
+======================================================================
+BENCHMARK 2: Signed Epoch Head Prototype
+======================================================================
+  500 events, 5 epochs in 0.006s
+  Epoch 0: VALID | 0.191ms
+  Epoch 1: VALID | 0.187ms
+  Epoch 2: VALID | 0.173ms
+  Epoch 3: VALID | 0.170ms
+  Epoch 4: VALID | 0.181ms
+  Tamper test: DETECTED
+
+======================================================================
+BENCHMARK 3: Failure Injection Experiments
+======================================================================
+
+--- F1: MMR Unavailable ---
+  Normal: APPROVED | Down: REJECTED gate=audit_bridge
+
+--- F2: Leaf Corruption ---
+  Detected: True
+
+--- F3: Event Deletion ---
+  Pre: 10 Post: 9 Gap: True
+
+--- F4: Token Replay ---
+  First: APPROVED Replay: APPROVED (known limitation)
+
+--- F5: 100-Thread Contention ---
+  500/500 in 0.226s | Errors: 0 | Monotonic: True
+
+======================================================================
+SUMMARY
+======================================================================
+[B1] 3669 RPS seq | p50=0.284ms p99=0.713ms
+[B2] 5 epochs | valid=True | tamper=True | sign=0.041ms
+[B3] f1_mmr_unavailable: PASS
+[B3] f2_corruption: PASS
+[B3] f3_deletion: PASS
+[B3] f4_replay: PASS
+[B3] f5_contention: PASS
+
+Results: D:\AI\licitra-sentry\experiments\benchmark_results.json
