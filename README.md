@@ -57,6 +57,22 @@ See [docs/how_to_run.md](docs/how_to_run.md) for detailed instructions.
 - [LICITRA-SENTRY](https://github.com/narendrakumarnutalapati/licitra-sentry) — Zero-Trust Control Plane (source code + experiment scripts)
 - [LICITRA-MMR](https://github.com/narendrakumarnutalapati/licitra-mmr-core) — Cryptographic Integrity Layer
 
+
+## MMR Paper Future Scope Fulfillment
+
+The LICITRA-MMR paper (ACNS-ISC 2026, Submission 10) identified four limitations in Section 10. LICITRA-SENTRY directly addresses two of them:
+
+| MMR Paper Section | Limitation | Addressed By | Status |
+|------------------|-----------|-------------|--------|
+| 10.1 | Float Normalization Gap (RFC 8785 S3.2.2) | LICITRA-MMR v1.1 (planned) | Future |
+| 10.2 | Unsigned Epoch Roots (Ed25519 signing) | SENTRY `app/identity.py` - Ed25519 CovenantNotary | Implemented |
+| 10.3 | Single-Operator Trust (multi-party witnessing) | Multi-party witnessing protocol (planned) | Future |
+| 10.4 | Pre-Execution Integrity (semantic contracts) | SENTRY Chain of Intent - full pipeline | Implemented |
+
+**Section 10.2 - Ed25519 Identity:** The MMR paper noted epoch hashes were not signed. SENTRY introduces Ed25519 cryptographic signing at the agent session level via the CovenantNotary.
+
+**Section 10.4 - Chain of Intent:** The MMR paper explicitly identified SENTRY as the solution: LICITRA-SENTRY intercepts agent actions before they reach the commit pipeline, evaluates them against declarative per-agent semantic contracts, and binds the authorization decision to the MMR record in the same transaction. This is exactly what the Chain of Intent pipeline implements with commitment-before-execution and cryptographic evidence of policy evaluation.
+
 ## License
 
 MIT — see [LICENSE](LICENSE).
