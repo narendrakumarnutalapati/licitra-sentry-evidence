@@ -2,69 +2,117 @@
 
 ## Overview
 
-Six experiments validate the Chain of Intent pipeline across all 10 OWASP Agentic Top 10 categories. Each experiment is a standalone Python script that can be run independently.
+LICITRA-SENTRY v0.2 includes **10 runtime security experiments** designed to validate the enforcement invariant:
 
-## Experiment Protocol
+```text
+H(authorized_request) = H(executed_request)
+```
 
-1. Start LICITRA-MMR at http://localhost:8000
-2. Build the SENTRY stack (identity, contracts, authority, inspector, orchestration, audit bridge, middleware)
-3. Execute scenario through the Chain of Intent pipeline
-4. Capture the MiddlewareResult including MMR leaf_hash
-5. Verify: decision matches expected, gate matches expected, leaf_hash is 64-char SHA-256 hex
-6. Verdict: CONFIRMED if all checks pass
+Experiments are executed as part of the reproducible pipeline and archived under a run directory.
 
-## Experiments
+Example run in this repository:
 
-### EXP-01: Happy Path — Approved
+```
+runs/20260311T043751Z/
+```
 
-**Script:** `experiments/run_exp01_happy_path.py`
-**Goal:** Valid agent, valid token, allowed intent, allowed tool, clean message passes all gates.
-**Agent:** Researcher | **Intent:** READ | **Tool:** web_search
-**Expected:** APPROVED, gate=approved, leaf_hash present
-**OWASP:** ASI07 (Inter-Agent Communication Integrity)
+Each experiment produces:
 
-### EXP-02: Contract Rejection — Excessive Agency Blocked
+- **Machine-readable output**
+  `experiments/EXP-xx/experiment_output.json`
 
-**Script:** `experiments/run_exp02_contract_rejection.py`
-**Goal:** Contract engine rejects intent not in agent's allowed list.
-**Agent:** Researcher | **Intent:** FILE_WRITE (not allowed) | **Tool:** editor
-**Expected:** REJECTED, gate=contract, leaf_hash present
-**OWASP:** ASI02 (Excessive Agency)
+- **Structured evidence bundle**
+  `evidence/EXP-xx/evidence.json`
 
-### EXP-03: Identity Expiry Rejection — Impersonation Blocked
+- **Human-readable report**
+  `evidence/EXP-xx/evidence.pdf`
 
-**Script:** `experiments/run_exp03_identity_expiry.py`
-**Goal:** Expired token rejected at identity gate.
-**Agent:** Researcher (expired token) | **Intent:** READ
-**Expected:** REJECTED, gate=identity, leaf_hash present
-**OWASP:** ASI03 (Agent Impersonation)
+---
 
-### EXP-04: Relay Injection Blocked
+## Experiment List
 
-**Script:** `experiments/run_exp04_relay_injection.py`
-**Goal:** Content inspector detects relay injection pattern.
-**Agent:** Researcher | **Message:** "ignore all previous instructions..."
-**Expected:** REJECTED, gate=inspector, findings include RI-001, leaf_hash present
-**OWASP:** ASI01 (Prompt Injection / Relay Injection)
+| ID     | Description                          |
+| ------ | ------------------------------------ |
+| EXP-01 | Authorized execution path            |
+| EXP-02 | Contract rejection                   |
+| EXP-03 | Identity expiry                      |
+| EXP-04 | Relay injection attack               |
+| EXP-05 | PII exfiltration attempt             |
+| EXP-06 | Unauthorized delegation              |
+| EXP-07 | End-to-end MMR proof validation      |
+| EXP-08 | Ticket replay attack                 |
+| EXP-09 | Payload tampering                    |
+| EXP-10 | Audit tampering                      |
 
-### EXP-05: PII Exfiltration Blocked — SSN Detection
+---
 
-**Script:** `experiments/run_exp05_pii_exfiltration.py`
-**Goal:** Content inspector detects US SSN pattern.
-**Agent:** Researcher | **Message:** contains "123-45-6789"
-**Expected:** REJECTED, gate=inspector, findings include PII-001, leaf_hash present
-**OWASP:** ASI06 (Sensitive Data Exposure)
+## Running Experiments
 
-### EXP-06: Unauthorized Delegation Blocked — Orchestration Guard
+The canonical way to run the experiments is through the pipeline:
 
-**Script:** `experiments/run_exp06_unauthorized_delegation.py`
-**Goal:** Orchestration guard blocks unauthorized agent delegation.
-**Agent:** Coder delegates to Researcher (policy only allows Researcher->Coder)
-**Expected:** REJECTED, gate=orchestration, leaf_hash present
-**OWASP:** ASI05 (Improper Multi-Agent Orchestration)
+```bash
+python scripts/run_all.py
+```
 
-## Reproducibility
+This runs:
 
-All experiments are deterministic given the same inputs. The MMR leaf_hash will differ between runs (timestamps vary), but decision, gate_fired, and findings are identical.
+1. Security tests
+2. Experiment suite
+3. Benchmark suite
+4. Evidence generation
+5. Evidence manifest generation
 
-Evidence PDFs in the `evidence/` folder capture one complete run with real MMR leaf_hashes.
+---
+
+## Output Structure
+
+Experiment outputs are stored under:
+
+```
+runs/<run_id>/experiments/
+```
+
+Example:
+
+```
+runs/20260311T043751Z/experiments/
+├── summary.json
+├── EXP-01/experiment_output.json
+├── EXP-02/experiment_output.json
+├── EXP-03/experiment_output.json
+├── EXP-04/experiment_output.json
+├── EXP-05/experiment_output.json
+├── EXP-06/experiment_output.json
+├── EXP-07/experiment_output.json
+├── EXP-08/experiment_output.json
+├── EXP-09/experiment_output.json
+└── EXP-10/experiment_output.json
+```
+
+Evidence bundles are stored under:
+
+```
+runs/<run_id>/evidence/
+```
+
+---
+
+## Canonical Reference Run
+
+The validated reference run archived in this repository is:
+
+```
+20260311T043751Z
+```
+
+Experiment summary:
+
+```
+runs/20260311T043751Z/experiments/summary.json
+```
+
+Evidence bundles:
+
+```
+runs/20260311T043751Z/evidence/
+```

@@ -1,0 +1,105 @@
+{
+  "schema_version": "1.0.0",
+  "artifact_type": "test_report",
+  "run_id": "20260311T043751Z",
+  "timestamp_utc": "2026-03-11T04:37:53Z",
+  "status": "PASS",
+  "total": 13,
+  "passed": 13,
+  "failed": 0,
+  "items": [
+    {
+      "record_id": "TEST-001",
+      "name": "test_sentry_v02",
+      "file": "tests/test_sentry_v02.py",
+      "status": "PASS",
+      "exit_code": 0,
+      "duration_ms": 1772,
+      "stdout": "======================================================================\nLICITRA-SENTRY v0.2 \u2014 Test Suite\n======================================================================\n\n[E01] Authorized Ticket Flow\n  [PASS] E01: Authorized ticket flow \u2014 end-to-end success\n\n[E02] Proxy Bypass Attempt\n  [PASS] E02: Proxy bypass attempt \u2014 correctly rejected\n\n[E03] Replay Attack\n  [PASS] E03: Replay attack \u2014 correctly detected and rejected\n\n[E04] Payload Modification\n  [PASS] E04: Payload modification \u2014 hash mismatch detected\n\n[E05] Expired Ticket\n  [PASS] E05: Expired ticket \u2014 correctly rejected\n\n[E06] Delegation Escalation\n  [PASS] E06: Delegation escalation \u2014 correctly blocked\n         Reason: Gate 3 (Contract): [\"Tool 'email-sender' not in allowed_tools: {'db-reader'}\", \"...\n\n[E07] PII Exfiltration Blocked\n  [PASS] E07: PII exfiltration \u2014 blocked by content inspection\n\n[E08] Audit Chain Integrity\n  [PASS] E08: Audit chain integrity \u2014 18 events verified\n\n======================================================================\nSUMMARY\n======================================================================\n  [PASS] E01: Authorized Ticket Flow\n  [PASS] E02: Proxy Bypass Attempt\n  [PASS] E03: Replay Attack\n  [PASS] E04: Payload Modification\n  [PASS] E05: Expired Ticket\n  [PASS] E06: Delegation Escalation\n  [PASS] E07: PII Exfiltration Blocked\n  [PASS] E08: Audit Chain Integrity\n\n  Result: 8/8 tests passed\n======================================================================\n",
+      "stderr": "REJECTED tool=email-sender agent=agent-alpha error=TICKET_INVALID: Signature verification failed: 'Key ID not found: nonexistent-key'\nREJECTED tool=email-sender agent=agent-alpha error=REPLAY_DETECTED: Ticket a7042351-05c6-4b10-8596-4d5248694529 has already been used\nREJECTED tool=email-sender agent=agent-alpha error=TICKET_INVALID: Request hash mismatch: payload modified after authorization\nREJECTED tool=db-reader agent=agent-alpha error=TICKET_INVALID: Ticket expired: exp=1773203872.4316647, now=1773203872.9339921\n",
+      "parsed_checks": [
+        {
+          "check_id": "E01",
+          "name": "Authorized Ticket Flow",
+          "status": "PASS"
+        },
+        {
+          "check_id": "E02",
+          "name": "Proxy Bypass Attempt",
+          "status": "PASS"
+        },
+        {
+          "check_id": "E03",
+          "name": "Replay Attack",
+          "status": "PASS"
+        },
+        {
+          "check_id": "E04",
+          "name": "Payload Modification",
+          "status": "PASS"
+        },
+        {
+          "check_id": "E05",
+          "name": "Expired Ticket",
+          "status": "PASS"
+        },
+        {
+          "check_id": "E06",
+          "name": "Delegation Escalation",
+          "status": "PASS"
+        },
+        {
+          "check_id": "E07",
+          "name": "PII Exfiltration Blocked",
+          "status": "PASS"
+        },
+        {
+          "check_id": "E08",
+          "name": "Audit Chain Integrity",
+          "status": "PASS"
+        }
+      ],
+      "started_at_utc": "2026-03-11T04:37:51Z",
+      "finished_at_utc": "2026-03-11T04:37:52Z"
+    },
+    {
+      "record_id": "TEST-002",
+      "name": "test_witness",
+      "file": "tests/test_witness.py",
+      "status": "PASS",
+      "exit_code": 0,
+      "duration_ms": 258,
+      "stdout": "======================================================================\nLICITRA-SENTRY v0.2 \u2014 Witness Tests\n======================================================================\n\n[E09] Epoch Witnessed with Receipt\n  [PASS] E09: Epoch witnessed \u2014 3 receipts generated\n\n[E10] Operator Rewrite Detected\n  [PASS] E10: Operator rewrite detected \u2014 witness receipt caught the fraud\n\n[E11] External Auditor Verification\n  [PASS] E11: Auditor verification \u2014 6 epochs, 6 receipts, chain intact\n\n[E12] Tampered Receipt Rejected\n  [PASS] E12: Tampered receipt rejected \u2014 forged signature detected\n\n[E13] Chain Break Detected\n  [PASS] E13: Chain break detected \u2014 2 error(s) found\n\n======================================================================\nSUMMARY\n======================================================================\n  [PASS] E09: Epoch Witnessed with Receipt\n  [PASS] E10: Operator Rewrite Detected\n  [PASS] E11: External Auditor Verification\n  [PASS] E12: Tampered Receipt Rejected\n  [PASS] E13: Chain Break Detected\n\n  Result: 5/5 witness tests passed\n======================================================================\n",
+      "stderr": "",
+      "parsed_checks": [
+        {
+          "check_id": "E09",
+          "name": "Epoch Witnessed with Receipt",
+          "status": "PASS"
+        },
+        {
+          "check_id": "E10",
+          "name": "Operator Rewrite Detected",
+          "status": "PASS"
+        },
+        {
+          "check_id": "E11",
+          "name": "External Auditor Verification",
+          "status": "PASS"
+        },
+        {
+          "check_id": "E12",
+          "name": "Tampered Receipt Rejected",
+          "status": "PASS"
+        },
+        {
+          "check_id": "E13",
+          "name": "Chain Break Detected",
+          "status": "PASS"
+        }
+      ],
+      "started_at_utc": "2026-03-11T04:37:52Z",
+      "finished_at_utc": "2026-03-11T04:37:53Z"
+    }
+  ]
+}

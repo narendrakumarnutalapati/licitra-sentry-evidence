@@ -1,0 +1,56 @@
+{
+  "schema_version": "1.0.0",
+  "artifact_type": "evidence_bundle",
+  "category": "test_validation",
+  "record_id": "TEST-001",
+  "run_id": "20260311T043751Z",
+  "timestamp_utc": "2026-03-11T05:04:58Z",
+  "verification_status": "PASS",
+  "details": {
+    "name": "test_sentry_v02",
+    "file": "tests/test_sentry_v02.py",
+    "duration_ms": 1772,
+    "parsed_checks": [
+      {
+        "check_id": "E01",
+        "name": "Authorized Ticket Flow",
+        "status": "PASS"
+      },
+      {
+        "check_id": "E02",
+        "name": "Proxy Bypass Attempt",
+        "status": "PASS"
+      },
+      {
+        "check_id": "E03",
+        "name": "Replay Attack",
+        "status": "PASS"
+      },
+      {
+        "check_id": "E04",
+        "name": "Payload Modification",
+        "status": "PASS"
+      },
+      {
+        "check_id": "E05",
+        "name": "Expired Ticket",
+        "status": "PASS"
+      },
+      {
+        "check_id": "E06",
+        "name": "Delegation Escalation",
+        "status": "PASS"
+      },
+      {
+        "check_id": "E07",
+        "name": "PII Exfiltration Blocked",
+        "status": "PASS"
+      },
+      {
+        "check_id": "E08",
+        "name": "Audit Chain Integrity",
+        "status": "PASS"
+      }
+    ]
+  }
+}

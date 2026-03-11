@@ -1,0 +1,27 @@
+{
+  "schema_version": "1.0.0",
+  "artifact_type": "experiment_output",
+  "experiment_id": "EXP-07",
+  "timestamp_utc": "2026-03-11T04:38:34Z",
+  "status": "PASS",
+  "source_script": "experiments/run_exp07_e2e_mmr_proof.py",
+  "raw_output": {
+    "experiment": "EXP-E2E-MMR-PROOF",
+    "org_id": "sentry-e2e-proof",
+    "decision": "APPROVED",
+    "gate": "approved",
+    "mmr_staged_id": 39322,
+    "mmr_event_id": "0a433222-6098-439c-a8cc-a5da9d07fb07",
+    "leaf_hash": "e20f617feb27c5037819f91cfa481c17c088b3cca9e1ba3dbd4763a6c2d84d9f",
+    "verify_ok": true,
+    "verify_epochs": 1,
+    "verify_total_events": 2,
+    "last_epoch_hash": "d633f2d9b314c8daca3f58135c6e34e68ee3030fac314d022d6d0922c32eb19c",
+    "proof_event_id": "0a433222-6098-439c-a8cc-a5da9d07fb07",
+    "proof_leaf_hash": "e20f617feb27c5037819f91cfa481c17c088b3cca9e1ba3dbd4763a6c2d84d9f",
+    "proof_mmr_root": "b777ebd4553fa604a7904c9856cc8e90b24ef11c94e7dca363e8e8f7426824b0",
+    "proof_epoch_hash": "d633f2d9b314c8daca3f58135c6e34e68ee3030fac314d022d6d0922c32eb19c",
+    "proof_path_len": 1,
+    "verdict": "CONFIRMED"
+  }
+}

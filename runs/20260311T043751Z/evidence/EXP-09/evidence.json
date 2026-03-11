@@ -1,0 +1,25 @@
+{
+  "schema_version": "1.0.0",
+  "artifact_type": "evidence_bundle",
+  "category": "experiment_validation",
+  "record_id": "EXP-09",
+  "run_id": "20260311T043751Z",
+  "timestamp_utc": "2026-03-11T05:04:58Z",
+  "verification_status": "PASS",
+  "details": {
+    "source_script": "experiments/run_exp09_payload_tampering.py",
+    "experiment_title": "Payload Tampering After Authorization",
+    "authorized": true,
+    "ticket_jti": "8f4e3c16-c9c1-4d84-880f-1842b281766a",
+    "allowed": false,
+    "error": "TICKET_INVALID: Request hash mismatch: payload modified after authorization",
+    "verdict": "CONFIRMED",
+    "authorized_payload": {
+      "query": "quarterly earnings report"
+    },
+    "tampered_payload": {
+      "query": "employee payroll database"
+    },
+    "raw_output_path": "artifacts/runs/20260311T043751Z/experiments/EXP-09/experiment_output.json"
+  }
+}

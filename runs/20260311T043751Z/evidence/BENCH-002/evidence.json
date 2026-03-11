@@ -1,0 +1,16 @@
+{
+  "schema_version": "1.0.0",
+  "artifact_type": "evidence_bundle",
+  "category": "benchmark_validation",
+  "record_id": "BENCH-002",
+  "run_id": "20260311T043751Z",
+  "timestamp_utc": "2026-03-11T05:04:58Z",
+  "verification_status": "PASS",
+  "details": {
+    "name": "concurrent_full_pipeline",
+    "metric": "rps",
+    "value": 336,
+    "source_script": "experiments/benchmark_suite.py",
+    "benchmark_report_path": "artifacts/runs/20260311T043751Z/benchmarks/benchmark_report.json"
+  }
+}

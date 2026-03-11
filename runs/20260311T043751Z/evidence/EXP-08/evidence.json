@@ -1,0 +1,21 @@
+{
+  "schema_version": "1.0.0",
+  "artifact_type": "evidence_bundle",
+  "category": "experiment_validation",
+  "record_id": "EXP-08",
+  "run_id": "20260311T043751Z",
+  "timestamp_utc": "2026-03-11T05:04:58Z",
+  "verification_status": "PASS",
+  "details": {
+    "source_script": "experiments/run_exp08_ticket_replay.py",
+    "experiment_title": "Ticket Replay Attack",
+    "authorized": true,
+    "ticket_jti": "f64b1a3b-fd0c-4c2c-baad-eb159ed4c7cb",
+    "allowed": null,
+    "error": null,
+    "verdict": "CONFIRMED",
+    "authorized_payload": null,
+    "tampered_payload": null,
+    "raw_output_path": "artifacts/runs/20260311T043751Z/experiments/EXP-08/experiment_output.json"
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "schema_version": "1.0.0",
+  "artifact_type": "experiment_output",
+  "experiment_id": "EXP-08",
+  "timestamp_utc": "2026-03-11T04:38:34Z",
+  "status": "PASS",
+  "source_script": "experiments/run_exp08_ticket_replay.py",
+  "raw_output": {
+    "experiment": "EXP-08",
+    "title": "Ticket Replay Attack",
+    "authorized": true,
+    "ticket_jti": "f64b1a3b-fd0c-4c2c-baad-eb159ed4c7cb",
+    "first_allowed": true,
+    "first_output": {
+      "status": "ok",
+      "query": "quarterly earnings report"
+    },
+    "replay_allowed": false,
+    "replay_error": "REPLAY_DETECTED: Ticket f64b1a3b-fd0c-4c2c-baad-eb159ed4c7cb has already been used",
+    "verdict": "CONFIRMED"
+  }
+}

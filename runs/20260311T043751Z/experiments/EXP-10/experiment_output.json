@@ -1,0 +1,39 @@
+{
+  "schema_version": "1.0.0",
+  "artifact_type": "experiment_output",
+  "experiment_id": "EXP-10",
+  "timestamp_utc": "2026-03-11T04:38:51Z",
+  "status": "PASS",
+  "source_script": "experiments/run_exp10_audit_tampering.py",
+  "raw_output": {
+    "experiment": "EXP-10",
+    "title": "Audit Ledger Tampering",
+    "org_id": "sentry-exp10",
+    "event_id_tampered": "4e37f32a-72ed-48c3-84bd-d8ceb94d1cee",
+    "leaf_hash_before_tamper": "f1f75f65a6fc1f2111251de6028c8c87081619fc255555f36310ca12e8da0e50",
+    "verify_before": {
+      "org_id": "sentry-exp10",
+      "ok": true,
+      "epochs": 1,
+      "total_events": 2,
+      "last_epoch_hash": "ef9838889077b46d4f63fbff791b80449472aca16fd4b6ac4b4428aab03ebcc2"
+    },
+    "tamper_result": {
+      "ok": true,
+      "event_id": "4e37f32a-72ed-48c3-84bd-d8ceb94d1cee",
+      "action": "tampered canonical_json",
+      "note": "leaf_hash in DB unchanged \u2014 verification will detect mismatch"
+    },
+    "verify_after": {
+      "org_id": "sentry-exp10",
+      "ok": false,
+      "bad_epoch_index": 0,
+      "bad_event_id": "4e37f32a-72ed-48c3-84bd-d8ceb94d1cee",
+      "reason": "Leaf integrity failure: canonical_json does not match leaf_hash for event 4e37f32a-72ed-48c3-84bd-d8ceb94d1cee (seq=1): stored=f1f75f65a6fc1f2111251de6028c8c87081619fc255555f36310ca12e8da0e50 recomputed=1d6c2901e32264d13d31fefc5c7f610a1ab65a3954b2311d24a1e8ac5cd90d86",
+      "epochs": 1,
+      "total_events": 0,
+      "last_epoch_hash": "0000000000000000000000000000000000000000000000000000000000000000"
+    },
+    "verdict": "CONFIRMED"
+  }
+}

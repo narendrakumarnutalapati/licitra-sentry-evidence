@@ -1,0 +1,40 @@
+{
+  "metadata": {
+    "python": "3.12.7 (tags/v3.12.7:0b05ead, Oct  1 2024, 03:06:41) [MSC v.1941 64 bit (AMD64)]",
+    "platform": "win32",
+    "ts": "2026-03-11T04:38:51Z",
+    "benchmark_version": "v0.2"
+  },
+  "b1_sequential_full_pipeline": {
+    "count": 1000,
+    "rps": 244,
+    "p50_ms": 3.993,
+    "p95_ms": 4.833,
+    "p99_ms": 7.345,
+    "decisions": {
+      "APPROVED": 1000,
+      "REJECTED": 0
+    },
+    "audit_events": 5000
+  },
+  "b2_concurrent_full_pipeline": {
+    "count": 1000,
+    "threads": 20,
+    "rps": 336,
+    "p50_ms": 57.972,
+    "p95_ms": 70.998,
+    "p99_ms": 73.74,
+    "decisions": {
+      "APPROVED": 1000,
+      "REJECTED": 0
+    },
+    "audit_events": 10000
+  },
+  "b3_security_failure_checks": {
+    "replay_first_allowed": true,
+    "replay_second_allowed": false,
+    "replay_second_error": "REPLAY_DETECTED: Ticket 81398306-84d0-4e8d-ac2c-ba1e2fd7024f has already been used",
+    "tamper_allowed": false,
+    "tamper_error": "TICKET_INVALID: Request hash mismatch: payload modified after authorization"
+  }
+}

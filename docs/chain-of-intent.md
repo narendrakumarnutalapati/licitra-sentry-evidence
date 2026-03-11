@@ -1,85 +1,123 @@
-# Chain of Intent — Formal Specification
+# LICITRA-SENTRY Runtime Enforcement Model
 
 ## Overview
 
-The Chain of Intent is the core security model of LICITRA-SENTRY. It defines a sequential pipeline of cryptographically enforced gates that every inter-agent message must pass through before being forwarded.
+LICITRA-SENTRY v0.2 enforces a runtime security invariant for AI agent tool execution:
 
-## Definition
+H(authorized_request) = H(executed_request)
 
-A Chain of Intent is a tuple C = (G1, G2, G3, G4, G5, A) where:
+Authorization decisions are cryptographically bound to the exact request payload that will later be executed.  
+If the executed request differs from the authorized request, execution is rejected.
 
-- **G1 (Identity Gate):** Verifies the agent's Ed25519-signed session token. Checks signature validity and token expiry.
-- **G2 (Content Gate):** Inspects message content against a deterministic rule set for injection patterns, PII, and privilege escalation.
-- **G3 (Contract Gate):** Validates that the requested intent, tool, and parameter shapes are permitted by the agent's safety contract.
-- **G4 (Authority Gate):** Performs final authorization combining identity validity with contract compliance.
-- **G5 (Orchestration Gate):** If the message involves delegation, verifies the delegation is authorized and does not escalate privileges.
-- **A (Anchor):** Commits the decision (APPROVED or REJECTED) to LICITRA-MMR via 2-phase commit.
+---
 
-## Sequential Enforcement
-```
-Message M from Agent X
-        |
-        v
-   +---------+    REJECT --> Anchor(REJECTED, reason=identity) --> MMR
-   | G1: ID  |----------->
-   +----+----+
-        | PASS
-        v
-   +---------+    REJECT --> Anchor(REJECTED, reason=inspector) --> MMR
-   |G2:Content|---------->
-   +----+----+
-        | PASS
-        v
-   +---------+    REJECT --> Anchor(REJECTED, reason=contract) --> MMR
-   |G3:Contract|--------->
-   +----+----+
-        | PASS
-        v
-   +---------+    REJECT --> Anchor(REJECTED, reason=authority) --> MMR
-   |G4:Authority|-------->
-   +----+----+
-        | PASS
-        v
-   +---------+    REJECT --> Anchor(REJECTED, reason=orchestration) --> MMR
-   |G5:Orchestr|-------->   (only if delegate_to is set)
-   +----+----+
-        | PASS
-        v
-   Anchor(APPROVED) --> MMR
-        |
-        v
-   Forward Message M
-```
+## Runtime Enforcement Flow
 
-## Properties
+The LICITRA-SENTRY runtime enforcement pipeline is:
 
-### P1: Completeness
-Every message receives a decision. There is no path through the pipeline that does not produce either APPROVED or REJECTED.
+Agent request  
+→ identity verification  
+→ content inspection  
+→ semantic contract validation  
+→ authority enforcement  
+→ execution ticket issuance  
+→ tool proxy verification  
+→ execution  
+→ audit commit  
+→ optional witness verification
 
-### P2: Tamper Evidence
-Every decision is committed to LICITRA-MMR. The MMR leaf_hash provides cryptographic proof that the decision was recorded. Epoch anchoring provides proof of ledger state at any point in time.
+---
 
-### P3: Short-Circuit Safety
-The pipeline short-circuits on the first rejection. The rejection reason identifies exactly which gate failed. Even rejected messages are anchored in MMR.
+## Stage Descriptions
 
-### P4: Determinism
-Given identical inputs (same token, intent, tool, message, contract), the pipeline produces identical decisions. Content inspection uses deterministic regex matching. Contract validation is pure and stateless.
+### Identity Verification
 
-### P5: Least Privilege
-Agents can only perform actions explicitly listed in their safety contract. The default is deny — any intent, tool, or parameter shape not in the contract is rejected.
+The requesting agent must authenticate successfully before any further processing occurs.  
+Identity credentials are validated before authorization logic is evaluated.
 
-### P6: Delegation Non-Escalation
-An agent cannot delegate tasks it is not itself authorized to perform. The orchestration guard checks the delegator's own contract before allowing delegation.
+### Content Inspection
 
-## OWASP Mapping
+The request payload is inspected for unsafe or prohibited content patterns, including prompt injection attempts and sensitive data exposure.
 
-| Gate | OWASP Categories |
-|------|-----------------|
-| G1 (Identity) | ASI03 Agent Impersonation, ASI10 Uncontrolled Proliferation |
-| G2 (Content) | ASI01 Prompt Injection, ASI06 Sensitive Data Exposure |
-| G3 (Contract) | ASI01 Prompt Injection, ASI02 Excessive Agency, ASI06 Data Exposure |
-| G4 (Authority) | ASI02 Excessive Agency, ASI09 Insufficient Access Controls |
-| G5 (Orchestration) | ASI05 Improper Multi-Agent Orchestration |
-| A (Anchor) | ASI04 Insecure Output Handling, ASI07 Communication Integrity, ASI08 Audit Failures |
+### Semantic Contract Validation
 
-**Total: 10/10 OWASP Agentic Top 10 covered.**
+The requested action must conform to the semantic contract defined for that agent.  
+Contracts restrict which tools and operations an agent may invoke.
+
+### Authority Enforcement
+
+Authorization checks ensure the request is permitted within the agent's role and delegation scope.
+
+### Execution Ticket Issuance
+
+If the request passes all authorization gates, the system issues an execution ticket that binds the authorization decision to the request payload.
+
+### Tool Proxy Verification
+
+All tool execution must pass through the Tool Proxy.  
+The proxy verifies:
+
+- ticket validity
+- expiration
+- replay state
+- request hash equality
+
+If verification fails, execution is denied.
+
+### Execution
+
+Only after successful proxy verification is the tool allowed to execute.
+
+### Audit Commit
+
+Execution decisions and associated metadata are committed to the audit system and linked to LICITRA-MMR.
+
+### Witness Verification (Optional)
+
+External witnesses may verify audit records to provide independent transparency guarantees.
+
+---
+
+## Security Guarantees
+
+The runtime model enforces the following guarantees:
+
+- authorized request equals executed request
+- replayed execution tickets are rejected
+- unauthorized tool invocation is blocked
+- delegation privilege escalation is prevented
+- audit history is tamper-evident
+- witness receipts enable external verification
+
+---
+
+## Attacks Addressed
+
+Examples of attacks addressed by the model include:
+
+- payload tampering after authorization
+- execution ticket replay
+- unauthorized delegation
+- sensitive data exfiltration
+- audit tampering
+- operator history rewriting
+
+---
+
+## Evidence Repository Relationship
+
+This repository stores reproducible artifact runs demonstrating the enforcement model in practice.
+
+The canonical archived run included here is:
+
+runs/20260311T043751Z/
+
+Artifacts in that run include:
+
+- security test results
+- runtime experiment outputs
+- benchmark reports
+- evidence bundles
+- a unified evidence manifest
+
+These artifacts provide verifiable evidence of the LICITRA-SENTRY runtime enforcement pipeline.

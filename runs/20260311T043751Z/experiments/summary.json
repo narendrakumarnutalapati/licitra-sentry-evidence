@@ -1,0 +1,62 @@
+{
+  "schema_version": "1.0.0",
+  "artifact_type": "experiment_summary",
+  "run_id": "20260311T043751Z",
+  "timestamp_utc": "2026-03-11T04:38:51Z",
+  "status": "PASS",
+  "total": 10,
+  "passed": 10,
+  "failed": 0,
+  "items": [
+    {
+      "record_id": "EXP-01",
+      "status": "PASS",
+      "path": "artifacts/runs/20260311T043751Z/experiments/EXP-01/experiment_output.json"
+    },
+    {
+      "record_id": "EXP-02",
+      "status": "PASS",
+      "path": "artifacts/runs/20260311T043751Z/experiments/EXP-02/experiment_output.json"
+    },
+    {
+      "record_id": "EXP-03",
+      "status": "PASS",
+      "path": "artifacts/runs/20260311T043751Z/experiments/EXP-03/experiment_output.json"
+    },
+    {
+      "record_id": "EXP-04",
+      "status": "PASS",
+      "path": "artifacts/runs/20260311T043751Z/experiments/EXP-04/experiment_output.json"
+    },
+    {
+      "record_id": "EXP-05",
+      "status": "PASS",
+      "path": "artifacts/runs/20260311T043751Z/experiments/EXP-05/experiment_output.json"
+    },
+    {
+      "record_id": "EXP-06",
+      "status": "PASS",
+      "path": "artifacts/runs/20260311T043751Z/experiments/EXP-06/experiment_output.json"
+    },
+    {
+      "record_id": "EXP-07",
+      "status": "PASS",
+      "path": "artifacts/runs/20260311T043751Z/experiments/EXP-07/experiment_output.json"
+    },
+    {
+      "record_id": "EXP-08",
+      "status": "PASS",
+      "path": "artifacts/runs/20260311T043751Z/experiments/EXP-08/experiment_output.json"
+    },
+    {
+      "record_id": "EXP-09",
+      "status": "PASS",
+      "path": "artifacts/runs/20260311T043751Z/experiments/EXP-09/experiment_output.json"
+    },
+    {
+      "record_id": "EXP-10",
+      "status": "PASS",
+      "path": "artifacts/runs/20260311T043751Z/experiments/EXP-10/experiment_output.json"
+    }
+  ]
+}

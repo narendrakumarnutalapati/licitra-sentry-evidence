@@ -1,0 +1,354 @@
+{
+  "schema_version": "1.0.0",
+  "artifact_type": "evidence_manifest",
+  "run_id": "20260311T043751Z",
+  "timestamp_utc": "2026-03-11T05:15:01Z",
+  "status": "PASS",
+  "counts": {
+    "test_records": 2,
+    "test_checks": 13,
+    "experiments": 10,
+    "benchmarks": 3,
+    "total_records": 15,
+    "total_validated_checks": 26
+  },
+  "index_path": "artifacts/runs/20260311T043751Z/evidence/index.json",
+  "latest_index_path": "artifacts/latest/evidence/index.json",
+  "categories": {
+    "test_validation": [
+      {
+        "record_id": "TEST-001",
+        "verification_status": "PASS",
+        "evidence_json": "artifacts/runs/20260311T043751Z/evidence/TEST-001/evidence.json",
+        "evidence_pdf": "artifacts/runs/20260311T043751Z/evidence/TEST-001/evidence.pdf",
+        "timestamp_utc": "2026-03-11T05:04:58Z",
+        "details": {
+          "name": "test_sentry_v02",
+          "file": "tests/test_sentry_v02.py",
+          "duration_ms": 1772,
+          "parsed_checks": [
+            {
+              "check_id": "E01",
+              "name": "Authorized Ticket Flow",
+              "status": "PASS"
+            },
+            {
+              "check_id": "E02",
+              "name": "Proxy Bypass Attempt",
+              "status": "PASS"
+            },
+            {
+              "check_id": "E03",
+              "name": "Replay Attack",
+              "status": "PASS"
+            },
+            {
+              "check_id": "E04",
+              "name": "Payload Modification",
+              "status": "PASS"
+            },
+            {
+              "check_id": "E05",
+              "name": "Expired Ticket",
+              "status": "PASS"
+            },
+            {
+              "check_id": "E06",
+              "name": "Delegation Escalation",
+              "status": "PASS"
+            },
+            {
+              "check_id": "E07",
+              "name": "PII Exfiltration Blocked",
+              "status": "PASS"
+            },
+            {
+              "check_id": "E08",
+              "name": "Audit Chain Integrity",
+              "status": "PASS"
+            }
+          ]
+        }
+      },
+      {
+        "record_id": "TEST-002",
+        "verification_status": "PASS",
+        "evidence_json": "artifacts/runs/20260311T043751Z/evidence/TEST-002/evidence.json",
+        "evidence_pdf": "artifacts/runs/20260311T043751Z/evidence/TEST-002/evidence.pdf",
+        "timestamp_utc": "2026-03-11T05:04:58Z",
+        "details": {
+          "name": "test_witness",
+          "file": "tests/test_witness.py",
+          "duration_ms": 258,
+          "parsed_checks": [
+            {
+              "check_id": "E09",
+              "name": "Epoch Witnessed with Receipt",
+              "status": "PASS"
+            },
+            {
+              "check_id": "E10",
+              "name": "Operator Rewrite Detected",
+              "status": "PASS"
+            },
+            {
+              "check_id": "E11",
+              "name": "External Auditor Verification",
+              "status": "PASS"
+            },
+            {
+              "check_id": "E12",
+              "name": "Tampered Receipt Rejected",
+              "status": "PASS"
+            },
+            {
+              "check_id": "E13",
+              "name": "Chain Break Detected",
+              "status": "PASS"
+            }
+          ]
+        }
+      }
+    ],
+    "experiment_validation": [
+      {
+        "record_id": "EXP-01",
+        "verification_status": "PASS",
+        "evidence_json": "artifacts/runs/20260311T043751Z/evidence/EXP-01/evidence.json",
+        "evidence_pdf": "artifacts/runs/20260311T043751Z/evidence/EXP-01/evidence.pdf",
+        "timestamp_utc": "2026-03-11T05:04:58Z",
+        "details": {
+          "source_script": "experiments/run_exp01_happy_path.py",
+          "experiment_title": "Happy Path - Approved",
+          "authorized": null,
+          "ticket_jti": null,
+          "allowed": null,
+          "error": null,
+          "verdict": "CONFIRMED",
+          "authorized_payload": null,
+          "tampered_payload": null,
+          "raw_output_path": "artifacts/runs/20260311T043751Z/experiments/EXP-01/experiment_output.json"
+        }
+      },
+      {
+        "record_id": "EXP-02",
+        "verification_status": "PASS",
+        "evidence_json": "artifacts/runs/20260311T043751Z/evidence/EXP-02/evidence.json",
+        "evidence_pdf": "artifacts/runs/20260311T043751Z/evidence/EXP-02/evidence.pdf",
+        "timestamp_utc": "2026-03-11T05:04:58Z",
+        "details": {
+          "source_script": "experiments/run_exp02_contract_rejection.py",
+          "experiment_title": "Contract Rejection - Excessive Agency Blocked",
+          "authorized": null,
+          "ticket_jti": null,
+          "allowed": null,
+          "error": null,
+          "verdict": "CONFIRMED",
+          "authorized_payload": null,
+          "tampered_payload": null,
+          "raw_output_path": "artifacts/runs/20260311T043751Z/experiments/EXP-02/experiment_output.json"
+        }
+      },
+      {
+        "record_id": "EXP-03",
+        "verification_status": "PASS",
+        "evidence_json": "artifacts/runs/20260311T043751Z/evidence/EXP-03/evidence.json",
+        "evidence_pdf": "artifacts/runs/20260311T043751Z/evidence/EXP-03/evidence.pdf",
+        "timestamp_utc": "2026-03-11T05:04:58Z",
+        "details": {
+          "source_script": "experiments/run_exp03_identity_expiry.py",
+          "experiment_title": "Identity Expiry Rejection - Impersonation Blocked",
+          "authorized": null,
+          "ticket_jti": null,
+          "allowed": null,
+          "error": null,
+          "verdict": "CONFIRMED",
+          "authorized_payload": null,
+          "tampered_payload": null,
+          "raw_output_path": "artifacts/runs/20260311T043751Z/experiments/EXP-03/experiment_output.json"
+        }
+      },
+      {
+        "record_id": "EXP-04",
+        "verification_status": "PASS",
+        "evidence_json": "artifacts/runs/20260311T043751Z/evidence/EXP-04/evidence.json",
+        "evidence_pdf": "artifacts/runs/20260311T043751Z/evidence/EXP-04/evidence.pdf",
+        "timestamp_utc": "2026-03-11T05:04:58Z",
+        "details": {
+          "source_script": "experiments/run_exp04_relay_injection.py",
+          "experiment_title": "Relay Injection Blocked",
+          "authorized": null,
+          "ticket_jti": null,
+          "allowed": null,
+          "error": null,
+          "verdict": "CONFIRMED",
+          "authorized_payload": null,
+          "tampered_payload": null,
+          "raw_output_path": "artifacts/runs/20260311T043751Z/experiments/EXP-04/experiment_output.json"
+        }
+      },
+      {
+        "record_id": "EXP-05",
+        "verification_status": "PASS",
+        "evidence_json": "artifacts/runs/20260311T043751Z/evidence/EXP-05/evidence.json",
+        "evidence_pdf": "artifacts/runs/20260311T043751Z/evidence/EXP-05/evidence.pdf",
+        "timestamp_utc": "2026-03-11T05:04:58Z",
+        "details": {
+          "source_script": "experiments/run_exp05_pii_exfiltration.py",
+          "experiment_title": "PII Exfiltration Blocked - SSN Detection",
+          "authorized": null,
+          "ticket_jti": null,
+          "allowed": null,
+          "error": null,
+          "verdict": "CONFIRMED",
+          "authorized_payload": null,
+          "tampered_payload": null,
+          "raw_output_path": "artifacts/runs/20260311T043751Z/experiments/EXP-05/experiment_output.json"
+        }
+      },
+      {
+        "record_id": "EXP-06",
+        "verification_status": "PASS",
+        "evidence_json": "artifacts/runs/20260311T043751Z/evidence/EXP-06/evidence.json",
+        "evidence_pdf": "artifacts/runs/20260311T043751Z/evidence/EXP-06/evidence.pdf",
+        "timestamp_utc": "2026-03-11T05:04:58Z",
+        "details": {
+          "source_script": "experiments/run_exp06_unauthorized_delegation.py",
+          "experiment_title": "Unauthorized Delegation Blocked - Orchestration Guard",
+          "authorized": null,
+          "ticket_jti": null,
+          "allowed": null,
+          "error": null,
+          "verdict": "CONFIRMED",
+          "authorized_payload": null,
+          "tampered_payload": null,
+          "raw_output_path": "artifacts/runs/20260311T043751Z/experiments/EXP-06/experiment_output.json"
+        }
+      },
+      {
+        "record_id": "EXP-07",
+        "verification_status": "PASS",
+        "evidence_json": "artifacts/runs/20260311T043751Z/evidence/EXP-07/evidence.json",
+        "evidence_pdf": "artifacts/runs/20260311T043751Z/evidence/EXP-07/evidence.pdf",
+        "timestamp_utc": "2026-03-11T05:04:58Z",
+        "details": {
+          "source_script": "experiments/run_exp07_e2e_mmr_proof.py",
+          "experiment_title": null,
+          "authorized": null,
+          "ticket_jti": null,
+          "allowed": null,
+          "error": null,
+          "verdict": "CONFIRMED",
+          "authorized_payload": null,
+          "tampered_payload": null,
+          "raw_output_path": "artifacts/runs/20260311T043751Z/experiments/EXP-07/experiment_output.json"
+        }
+      },
+      {
+        "record_id": "EXP-08",
+        "verification_status": "PASS",
+        "evidence_json": "artifacts/runs/20260311T043751Z/evidence/EXP-08/evidence.json",
+        "evidence_pdf": "artifacts/runs/20260311T043751Z/evidence/EXP-08/evidence.pdf",
+        "timestamp_utc": "2026-03-11T05:04:58Z",
+        "details": {
+          "source_script": "experiments/run_exp08_ticket_replay.py",
+          "experiment_title": "Ticket Replay Attack",
+          "authorized": true,
+          "ticket_jti": "f64b1a3b-fd0c-4c2c-baad-eb159ed4c7cb",
+          "allowed": null,
+          "error": null,
+          "verdict": "CONFIRMED",
+          "authorized_payload": null,
+          "tampered_payload": null,
+          "raw_output_path": "artifacts/runs/20260311T043751Z/experiments/EXP-08/experiment_output.json"
+        }
+      },
+      {
+        "record_id": "EXP-09",
+        "verification_status": "PASS",
+        "evidence_json": "artifacts/runs/20260311T043751Z/evidence/EXP-09/evidence.json",
+        "evidence_pdf": "artifacts/runs/20260311T043751Z/evidence/EXP-09/evidence.pdf",
+        "timestamp_utc": "2026-03-11T05:04:58Z",
+        "details": {
+          "source_script": "experiments/run_exp09_payload_tampering.py",
+          "experiment_title": "Payload Tampering After Authorization",
+          "authorized": true,
+          "ticket_jti": "8f4e3c16-c9c1-4d84-880f-1842b281766a",
+          "allowed": false,
+          "error": "TICKET_INVALID: Request hash mismatch: payload modified after authorization",
+          "verdict": "CONFIRMED",
+          "authorized_payload": {
+            "query": "quarterly earnings report"
+          },
+          "tampered_payload": {
+            "query": "employee payroll database"
+          },
+          "raw_output_path": "artifacts/runs/20260311T043751Z/experiments/EXP-09/experiment_output.json"
+        }
+      },
+      {
+        "record_id": "EXP-10",
+        "verification_status": "PASS",
+        "evidence_json": "artifacts/runs/20260311T043751Z/evidence/EXP-10/evidence.json",
+        "evidence_pdf": "artifacts/runs/20260311T043751Z/evidence/EXP-10/evidence.pdf",
+        "timestamp_utc": "2026-03-11T05:04:58Z",
+        "details": {
+          "source_script": "experiments/run_exp10_audit_tampering.py",
+          "experiment_title": "Audit Ledger Tampering",
+          "authorized": null,
+          "ticket_jti": null,
+          "allowed": null,
+          "error": null,
+          "verdict": "CONFIRMED",
+          "authorized_payload": null,
+          "tampered_payload": null,
+          "raw_output_path": "artifacts/runs/20260311T043751Z/experiments/EXP-10/experiment_output.json"
+        }
+      }
+    ],
+    "benchmark_validation": [
+      {
+        "record_id": "BENCH-001",
+        "verification_status": "PASS",
+        "evidence_json": "artifacts/runs/20260311T043751Z/evidence/BENCH-001/evidence.json",
+        "evidence_pdf": "artifacts/runs/20260311T043751Z/evidence/BENCH-001/evidence.pdf",
+        "timestamp_utc": "2026-03-11T05:04:58Z",
+        "details": {
+          "name": "sequential_full_pipeline",
+          "metric": "rps",
+          "value": 244,
+          "source_script": "experiments/benchmark_suite.py",
+          "benchmark_report_path": "artifacts/runs/20260311T043751Z/benchmarks/benchmark_report.json"
+        }
+      },
+      {
+        "record_id": "BENCH-002",
+        "verification_status": "PASS",
+        "evidence_json": "artifacts/runs/20260311T043751Z/evidence/BENCH-002/evidence.json",
+        "evidence_pdf": "artifacts/runs/20260311T043751Z/evidence/BENCH-002/evidence.pdf",
+        "timestamp_utc": "2026-03-11T05:04:58Z",
+        "details": {
+          "name": "concurrent_full_pipeline",
+          "metric": "rps",
+          "value": 336,
+          "source_script": "experiments/benchmark_suite.py",
+          "benchmark_report_path": "artifacts/runs/20260311T043751Z/benchmarks/benchmark_report.json"
+        }
+      },
+      {
+        "record_id": "BENCH-003",
+        "verification_status": "PASS",
+        "evidence_json": "artifacts/runs/20260311T043751Z/evidence/BENCH-003/evidence.json",
+        "evidence_pdf": "artifacts/runs/20260311T043751Z/evidence/BENCH-003/evidence.pdf",
+        "timestamp_utc": "2026-03-11T05:04:58Z",
+        "details": {
+          "name": "security_failure_checks",
+          "metric": "security_checks",
+          "value": "ok",
+          "source_script": "experiments/benchmark_suite.py",
+          "benchmark_report_path": "artifacts/runs/20260311T043751Z/benchmarks/benchmark_report.json"
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,95 @@
+{
+  "schema_version": "1.0.0",
+  "artifact_type": "test_summary",
+  "run_id": "20260311T043751Z",
+  "timestamp_utc": "2026-03-11T04:37:53Z",
+  "status": "PASS",
+  "total": 13,
+  "passed": 13,
+  "failed": 0,
+  "items": [
+    {
+      "record_id": "TEST-001",
+      "name": "test_sentry_v02",
+      "file": "tests/test_sentry_v02.py",
+      "status": "PASS",
+      "duration_ms": 1772,
+      "parsed_checks": [
+        {
+          "check_id": "E01",
+          "name": "Authorized Ticket Flow",
+          "status": "PASS"
+        },
+        {
+          "check_id": "E02",
+          "name": "Proxy Bypass Attempt",
+          "status": "PASS"
+        },
+        {
+          "check_id": "E03",
+          "name": "Replay Attack",
+          "status": "PASS"
+        },
+        {
+          "check_id": "E04",
+          "name": "Payload Modification",
+          "status": "PASS"
+        },
+        {
+          "check_id": "E05",
+          "name": "Expired Ticket",
+          "status": "PASS"
+        },
+        {
+          "check_id": "E06",
+          "name": "Delegation Escalation",
+          "status": "PASS"
+        },
+        {
+          "check_id": "E07",
+          "name": "PII Exfiltration Blocked",
+          "status": "PASS"
+        },
+        {
+          "check_id": "E08",
+          "name": "Audit Chain Integrity",
+          "status": "PASS"
+        }
+      ]
+    },
+    {
+      "record_id": "TEST-002",
+      "name": "test_witness",
+      "file": "tests/test_witness.py",
+      "status": "PASS",
+      "duration_ms": 258,
+      "parsed_checks": [
+        {
+          "check_id": "E09",
+          "name": "Epoch Witnessed with Receipt",
+          "status": "PASS"
+        },
+        {
+          "check_id": "E10",
+          "name": "Operator Rewrite Detected",
+          "status": "PASS"
+        },
+        {
+          "check_id": "E11",
+          "name": "External Auditor Verification",
+          "status": "PASS"
+        },
+        {
+          "check_id": "E12",
+          "name": "Tampered Receipt Rejected",
+          "status": "PASS"
+        },
+        {
+          "check_id": "E13",
+          "name": "Chain Break Detected",
+          "status": "PASS"
+        }
+      ]
+    }
+  ]
+}

@@ -1,12 +1,16 @@
-# How to Run LICITRA-SENTRY
+# How to Reproduce LICITRA-SENTRY Evidence
 
 ## Prerequisites
 
 - Python 3.12+
-- PostgreSQL 16 (for LICITRA-MMR)
+- LICITRA-MMR running locally on port `8000`
+- LICITRA-SENTRY source repository
 - Git
 
-## Step 1: Clone and Start LICITRA-MMR
+---
+
+## Step 1 — Start LICITRA-MMR
+
 ```bash
 git clone https://github.com/narendrakumarnutalapati/licitra-mmr-core.git
 cd licitra-mmr-core
@@ -14,86 +18,96 @@ pip install -r requirements.txt
 python -m uvicorn app.main:app --host 0.0.0.0 --port 8000
 ```
 
-Verify MMR is running: visit http://localhost:8000/docs
+Verify the service is reachable:
 
-## Step 2: Clone and Install LICITRA-SENTRY
+```bash
+curl http://127.0.0.1:8000/health
+```
+
+---
+
+## Step 2 — Clone and Install LICITRA-SENTRY
 
 In a separate terminal:
+
 ```bash
 git clone https://github.com/narendrakumarnutalapati/licitra-sentry.git
 cd licitra-sentry
 pip install -r requirements.txt
 ```
 
-## Step 3: Run Individual Experiments
+---
 
-Each experiment is a standalone Python script in the `experiments/` folder:
+## Step 3 — Run the Full Reproducible Pipeline
+
+The canonical reproduction path is:
+
 ```bash
-python experiments/run_exp01_happy_path.py
-python experiments/run_exp02_contract_rejection.py
-python experiments/run_exp03_identity_expiry.py
-python experiments/run_exp04_relay_injection.py
-python experiments/run_exp05_pii_exfiltration.py
-python experiments/run_exp06_unauthorized_delegation.py
+python scripts/run_all.py
 ```
 
-Each script:
-- Sets up the agent, contract, and token
-- Runs the scenario through the Chain of Intent pipeline
-- Commits the decision to LICITRA-MMR
-- Prints decision, gate fired, MMR leaf_hash, and verdict
+This pipeline runs, in order:
 
-## Step 4: Run All Experiments
-```bash
-python experiments/run_all_experiments.py
+1. Security tests
+2. Runtime security experiments
+3. Benchmark suite
+4. Evidence bundle generation
+5. Evidence manifest generation
+
+---
+
+## Step 4 — Inspect Output Artifacts
+
+Pipeline artifacts are written under:
+
+```
+artifacts/runs/<run_id>/
 ```
 
-Expected output: `ALL 6/6 EXPERIMENTS PASSED`
+Example structure:
 
-## Step 5: Run Demo Swarm
-```bash
-python demo_swarm.py
+```
+artifacts/runs/<run_id>/
+├── tests/
+├── experiments/
+├── benchmarks/
+├── evidence/
+└── evidence_manifest.json
 ```
 
-Runs all 6 scenarios and prints a summary table with MMR leaf_hash per scenario.
+---
 
-| Scenario | Agent | Intent | Expected | OWASP |
-|----------|-------|--------|----------|-------|
-| S1 | Researcher | READ | APPROVED | ASI07 |
-| S2 | Researcher | FILE_WRITE | REJECTED (contract) | ASI02 |
-| S3 | Researcher | READ (expired token) | REJECTED (identity) | ASI03 |
-| S4 | Researcher | READ (relay injection) | REJECTED (inspector) | ASI01 |
-| S5 | Researcher | SUMMARIZE (SSN in msg) | REJECTED (inspector) | ASI06 |
-| S6 | Coder | FILE_WRITE (delegate) | REJECTED (orchestration) | ASI05 |
+## Step 5 — Copy the Run into the Evidence Repository
 
-## Step 6: Run Full Test Suite
-```powershell
-powershell -ExecutionPolicy Bypass -File tests\run_all_tests.ps1
+After a successful run, copy the run directory from:
+
+```
+artifacts/runs/<run_id>/
 ```
 
-Expected: 9/9 tests passing.
+into the evidence repository under:
 
-## Step 7: Verify Evidence
-
-The `evidence/` folder in this repo contains PDF reports from a complete run.
-Each PDF is self-contained with:
-- Hypothesis, setup, input
-- Expected vs actual outcome
-- MMR cryptographic proof (staged_id, event_id, leaf_hash)
-- Inspection findings (if any)
-- Raw JSON output
-- Verdict: CONFIRMED
-
-The `leaf_hash` in each PDF is a real SHA-256 hash from LICITRA-MMR's
-Merkle Mountain Range. It can be independently verified against the MMR ledger.
-
-## Step 8: Regenerate Evidence PDFs (Optional)
-
-To regenerate the evidence PDFs from a fresh run, use the evidence generator
-script in the SENTRY repo (requires reportlab):
-```bash
-pip install reportlab
-python _gen_all_evidence.py
+```
+runs/<run_id>/
 ```
 
-This produces 6 individual experiment PDFs + 1 consolidated PDF in the `evidence/` folder.
+---
+
+## Step 6 — Validate the Manifest
+
+The canonical evidence manifest is:
+
+```
+runs/20260311T043751Z/evidence_manifest.json
+```
+
+Expected counts:
+
+| Field                    | Count |
+| ------------------------ | ----- |
+| `test_records`           | 2     |
+| `test_checks`            | 13    |
+| `experiments`            | 10    |
+| `benchmarks`             | 3     |
+| `total_records`          | 15    |
+| `total_validated_checks` | 26    |
