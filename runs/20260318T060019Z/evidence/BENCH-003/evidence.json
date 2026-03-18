@@ -1,0 +1,16 @@
+{
+  "schema_version": "1.0.0",
+  "artifact_type": "evidence_bundle",
+  "category": "benchmark_validation",
+  "record_id": "BENCH-003",
+  "run_id": "20260318T060019Z",
+  "timestamp_utc": "2026-03-18T06:01:36Z",
+  "verification_status": "PASS",
+  "details": {
+    "name": "security_failure_checks",
+    "metric": "security_checks",
+    "value": "ok",
+    "source_script": "experiments/benchmark_suite.py",
+    "benchmark_report_path": "artifacts/runs/20260318T060019Z/benchmarks/benchmark_report.json"
+  }
+}

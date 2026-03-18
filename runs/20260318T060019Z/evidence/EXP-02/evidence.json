@@ -1,0 +1,17 @@
+{
+  "schema_version": "1.0.0",
+  "artifact_type": "evidence_bundle",
+  "category": "experiment_validation",
+  "record_id": "EXP-02",
+  "run_id": "20260318T060019Z",
+  "timestamp_utc": "2026-03-18T06:01:36Z",
+  "verification_status": "PASS",
+  "details": {
+    "source_script": "experiments/run_exp02_contract_rejection.py",
+    "experiment_title": "Contract Rejection - Excessive Agency Blocked",
+    "authorized": null,
+    "ticket_jti": null,
+    "verdict": "CONFIRMED",
+    "raw_output_path": "artifacts/runs/20260318T060019Z/experiments/EXP-02/experiment_output.json"
+  }
+}

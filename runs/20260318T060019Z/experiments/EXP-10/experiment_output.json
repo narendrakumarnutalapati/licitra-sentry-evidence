@@ -1,0 +1,33 @@
+{
+  "schema_version": "1.0.0",
+  "artifact_type": "experiment_output",
+  "experiment_id": "EXP-10",
+  "timestamp_utc": "2026-03-18T06:01:23Z",
+  "status": "PASS",
+  "source_script": "experiments/run_exp10_audit_tampering.py",
+  "raw_output": {
+    "experiment": "EXP-AUDIT-TAMPERING",
+    "org_id": "sentry-audit-tamper",
+    "decision": "APPROVED",
+    "gate": "approved",
+    "mmr_health_status": "ok",
+    "mmr_block_size": 2,
+    "mmr_ledger_mode": "experiment",
+    "mmr_dev_mode": true,
+    "mmr_ledger_version": "mmr-v0.1",
+    "mmr_event_id": "4ad1db46-15a4-4e3b-987e-965054d3e932",
+    "verify_before_ok": true,
+    "verify_before_epochs": 1,
+    "verify_before_total_events": 2,
+    "tamper_ok": true,
+    "tamper_action": "tampered canonical_json",
+    "tamper_note": "leaf_hash in DB unchanged \u2014 verification will detect mismatch",
+    "verify_after_ok": false,
+    "verify_after_epochs": 1,
+    "verify_after_total_events": 0,
+    "verdict": "CONFIRMED"
+  },
+  "stdout": "[PRECHECK] MMR OK: block_size=2 ledger_mode=experiment dev_mode=True\n{\n  \"experiment\": \"EXP-AUDIT-TAMPERING\",\n  \"org_id\": \"sentry-audit-tamper\",\n  \"decision\": \"APPROVED\",\n  \"gate\": \"approved\",\n  \"mmr_health_status\": \"ok\",\n  \"mmr_block_size\": 2,\n  \"mmr_ledger_mode\": \"experiment\",\n  \"mmr_dev_mode\": true,\n  \"mmr_ledger_version\": \"mmr-v0.1\",\n  \"mmr_event_id\": \"4ad1db46-15a4-4e3b-987e-965054d3e932\",\n  \"verify_before_ok\": true,\n  \"verify_before_epochs\": 1,\n  \"verify_before_total_events\": 2,\n  \"tamper_ok\": true,\n  \"tamper_action\": \"tampered canonical_json\",\n  \"tamper_note\": \"leaf_hash in DB unchanged \\u2014 verification will detect mismatch\",\n  \"verify_after_ok\": false,\n  \"verify_after_epochs\": 1,\n  \"verify_after_total_events\": 0,\n  \"verdict\": \"CONFIRMED\"\n}\n",
+  "stderr": "",
+  "exit_code": 0
+}

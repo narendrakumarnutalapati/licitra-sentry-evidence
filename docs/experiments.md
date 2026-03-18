@@ -10,10 +10,10 @@ H(authorized_request) = H(executed_request)
 
 Experiments are executed as part of the reproducible pipeline and archived under a run directory.
 
-Example run in this repository:
+The current validated canonical run archived in this repository is:
 
 ```
-runs/20260311T043751Z/
+runs/20260318T060019Z/
 ```
 
 Each experiment produces:
@@ -75,7 +75,7 @@ runs/<run_id>/experiments/
 Example:
 
 ```
-runs/20260311T043751Z/experiments/
+runs/20260318T060019Z/experiments/
 ├── summary.json
 ├── EXP-01/experiment_output.json
 ├── EXP-02/experiment_output.json
@@ -97,22 +97,49 @@ runs/<run_id>/evidence/
 
 ---
 
+## Execution Modes
+
+LICITRA-SENTRY experiments operate in two modes depending on LICITRA-MMR configuration. The active mode is determined by the running LICITRA-MMR instance at execution time.
+The experiment pipeline does not override this configuration; it directly reflects the active MMR runtime mode.
+
+### Default Mode
+
+- `block_size`: large (e.g., 1000)
+- `ledger_mode`: default
+- EXP-07 and EXP-10 will be **skipped** because MMR blocks do not finalize until 1000 events are committed, so inclusion proofs are not available during a short experiment run.
+
+### Experiment Mode
+
+- `block_size`: 2
+- `ledger_mode`: experiment
+- **Required** for:
+  - EXP-07 (End-to-end MMR proof validation)
+  - EXP-10 (Audit tampering detection)
+
+> **Note:** The canonical run in this repository was generated in experiment mode. This is the recommended configuration for full validation.
+
+Enforcement correctness is independent of MMR mode; only proof availability is mode-dependent.
+
+---
+
 ## Canonical Reference Run
 
-The validated reference run archived in this repository is:
+The canonical run referenced above is:
 
 ```
-20260311T043751Z
+20260318T060019Z
 ```
+
+The previous run `20260311T043751Z` is retained as historical reference.
 
 Experiment summary:
 
 ```
-runs/20260311T043751Z/experiments/summary.json
+runs/20260318T060019Z/experiments/summary.json
 ```
 
 Evidence bundles:
 
 ```
-runs/20260311T043751Z/evidence/
+runs/20260318T060019Z/evidence/
 ```

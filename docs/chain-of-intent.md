@@ -108,11 +108,15 @@ Examples of attacks addressed by the model include:
 
 This repository stores reproducible artifact runs demonstrating the enforcement model in practice.
 
-The canonical archived run included here is:
+The canonical validated run archived in this repository is:
 
-runs/20260311T043751Z/
+```
+runs/20260318T060019Z/
+```
 
-Artifacts in that run include:
+The previous run `20260311T043751Z` is retained as historical reference.
+
+Artifacts in the canonical run include:
 
 - security test results
 - runtime experiment outputs

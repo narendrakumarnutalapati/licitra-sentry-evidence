@@ -1,0 +1,25 @@
+{
+  "schema_version": "1.0.0",
+  "artifact_type": "experiment_output",
+  "experiment_id": "EXP-08",
+  "timestamp_utc": "2026-03-18T06:01:04Z",
+  "status": "PASS",
+  "source_script": "experiments/run_exp08_ticket_replay.py",
+  "raw_output": {
+    "experiment": "EXP-08",
+    "title": "Ticket Replay Attack",
+    "authorized": true,
+    "ticket_jti": "2cfb2d32-d595-4e6a-bd21-bb790cd8b71a",
+    "first_allowed": true,
+    "first_output": {
+      "status": "ok",
+      "query": "quarterly earnings report"
+    },
+    "replay_allowed": false,
+    "replay_error": "REPLAY_DETECTED: Ticket 2cfb2d32-d595-4e6a-bd21-bb790cd8b71a has already been used",
+    "verdict": "CONFIRMED"
+  },
+  "stdout": "{\n  \"experiment\": \"EXP-08\",\n  \"title\": \"Ticket Replay Attack\",\n  \"authorized\": true,\n  \"ticket_jti\": \"2cfb2d32-d595-4e6a-bd21-bb790cd8b71a\",\n  \"first_allowed\": true,\n  \"first_output\": {\n    \"status\": \"ok\",\n    \"query\": \"quarterly earnings report\"\n  },\n  \"replay_allowed\": false,\n  \"replay_error\": \"REPLAY_DETECTED: Ticket 2cfb2d32-d595-4e6a-bd21-bb790cd8b71a has already been used\",\n  \"verdict\": \"CONFIRMED\"\n}\n",
+  "stderr": "REJECTED tool=web_search agent=researcher error=REPLAY_DETECTED: Ticket 2cfb2d32-d595-4e6a-bd21-bb790cd8b71a has already been used\n",
+  "exit_code": 0
+}

@@ -1,0 +1,17 @@
+{
+  "schema_version": "1.0.0",
+  "artifact_type": "evidence_bundle",
+  "category": "experiment_validation",
+  "record_id": "EXP-01",
+  "run_id": "20260318T060019Z",
+  "timestamp_utc": "2026-03-18T06:01:36Z",
+  "verification_status": "PASS",
+  "details": {
+    "source_script": "experiments/run_exp01_happy_path.py",
+    "experiment_title": "Happy Path - Approved",
+    "authorized": null,
+    "ticket_jti": null,
+    "verdict": "CONFIRMED",
+    "raw_output_path": "artifacts/runs/20260318T060019Z/experiments/EXP-01/experiment_output.json"
+  }
+}

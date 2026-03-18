@@ -1,0 +1,14 @@
+{
+  "schema_version": "1.0.0",
+  "artifact_type": "evidence_bundle",
+  "category": "test_validation",
+  "record_id": "TEST-001",
+  "run_id": "20260318T060019Z",
+  "timestamp_utc": "2026-03-18T06:01:36Z",
+  "verification_status": "PASS",
+  "details": {
+    "name": "test_sentry_v02",
+    "file": "tests/test_sentry_v02.py",
+    "duration_ms": 1777
+  }
+}

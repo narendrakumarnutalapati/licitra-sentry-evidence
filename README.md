@@ -1,10 +1,22 @@
 # LICITRA-SENTRY Evidence
 
-This repository contains reproducible evidence artifacts for **LICITRA-SENTRY v0.2**, the runtime enforcement layer for AI agent systems that guarantees:
+This repository contains reproducible evidence artifacts for LICITRA-SENTRY v0.2, a runtime enforcement system for AI agents that guarantees:
 
 ```text
 H(authorized_request) = H(executed_request)
 ```
+
+AI agent systems can execute actions that are difficult to verify after the fact. This repository provides cryptographic evidence that every executed action matches its authorized intent, even under adversarial conditions.
+
+The enforcement logic is implemented in LICITRA-SENTRY, and audit commitments are handled by LICITRA-MMR. The artifacts here provide reproducible proof that the combined system enforces the invariant under real execution conditions.
+
+---
+
+## Proof Guarantee
+
+This repository provides verifiable proof that the LICITRA-SENTRY enforcement invariant holds under adversarial conditions. Across all validated tests, experiments, and benchmarks, every executed request is cryptographically bound to its authorization decision, and any deviation (replay, tampering, or unauthorized action) is detected and rejected.
+
+Unlike traditional audit systems that detect issues after execution, LICITRA-SENTRY enforces correctness at runtime. Authorization decisions are cryptographically bound to the exact request executed by a tool, ensuring that any deviation between approved intent and actual execution is prevented rather than merely detected.
 
 ---
 
@@ -13,16 +25,82 @@ H(authorized_request) = H(executed_request)
 The canonical evidence in this repository is the structured run archive under:
 
 ```
-runs/20260311T043751Z/
+runs/20260318T060019Z/
 ```
 
-This run is the validated reference run in which:
+This is the current canonical validated run in which:
 
 - **13** security test checks passed
 - **10** runtime security experiments passed
 - **3** benchmark validations passed
 - Evidence bundles were generated
 - A unified evidence manifest was generated
+
+The previous run (20260311T043751Z) is retained as a historical reference.
+
+This run provides a complete, reproducible validation of LICITRA-SENTRY under both normal and adversarial execution scenarios.
+
+---
+
+## How to Verify the Evidence
+
+To validate the enforcement guarantee:
+
+1. Open the canonical evidence manifest: `runs/20260318T060019Z/evidence_manifest.json`
+2. Confirm aggregate counts:
+   - `test_checks = 13`
+   - `experiments = 10`
+   - `benchmarks = 3`
+   - `total_validated_checks = 26`
+3. Inspect experiment results:
+   - `runs/20260318T060019Z/experiments/summary.json`
+   - Verify all experiments report `"status": "PASS"`
+4. Validate adversarial scenarios:
+   - EXP-08 → replay attack rejected
+   - EXP-09 → payload tampering rejected
+   - EXP-10 → audit tampering detected
+5. Cross-check evidence bundles:
+   - `runs/20260318T060019Z/evidence/EXP-xx/evidence.json`
+   - Each contains cryptographic linkage between:
+     - authorized request
+     - execution ticket
+     - executed payload
+     - audit record
+   - The linkage is enforced through:
+     - `request_hash` (SHA-256 of authorized payload)
+     - `execution_ticket` (Ed25519 signature)
+     - `jti` (unique token for replay protection)
+6. (Optional) Reproduce the run:
+   - Follow `docs/how_to_run.md`
+   - Ensure LICITRA-MMR runs in experiment mode
+
+### Failure Conditions
+
+A validation must fail if any of the following occur:
+
+- mismatch between authorized request hash and executed payload
+- invalid, expired, or replayed execution ticket
+- tampered audit record or broken hash chain
+
+---
+
+## Runtime Context (MMR Mode)
+
+This canonical run was generated with LICITRA-MMR in the following configuration:
+
+- `block_size`: 2
+- `ledger_mode`: experiment
+- `dev_mode`: True
+
+This configuration enables:
+
+- Immediate epoch finalization
+- End-to-end MMR proof validation (EXP-07)
+- Audit tampering detection (EXP-10)
+
+In default mode (large block_size), these proofs are not available during short runs and certain experiments are skipped.
+
+As a result, experiments that require real-time inclusion proofs (EXP-07 and EXP-10) cannot be validated during short runs in default mode.
 
 ---
 
@@ -36,44 +114,8 @@ licitra-sentry-evidence/
 │   ├── experiments.md
 │   └── how_to_run.md
 ├── runs/
-│   └── 20260311T043751Z/
-│       ├── tests/
-│       │   ├── test_report.json
-│       │   └── summary.json
-│       ├── experiments/
-│       │   ├── summary.json
-│       │   ├── EXP-01/
-│       │   ├── EXP-02/
-│       │   ├── EXP-03/
-│       │   ├── EXP-04/
-│       │   ├── EXP-05/
-│       │   ├── EXP-06/
-│       │   ├── EXP-07/
-│       │   ├── EXP-08/
-│       │   ├── EXP-09/
-│       │   └── EXP-10/
-│       ├── benchmarks/
-│       │   ├── benchmark_report.json
-│       │   ├── benchmark_results.json
-│       │   └── summary.json
-│       ├── evidence/
-│       │   ├── index.json
-│       │   ├── TEST-001/
-│       │   ├── TEST-002/
-│       │   ├── EXP-01/
-│       │   ├── EXP-02/
-│       │   ├── EXP-03/
-│       │   ├── EXP-04/
-│       │   ├── EXP-05/
-│       │   ├── EXP-06/
-│       │   ├── EXP-07/
-│       │   ├── EXP-08/
-│       │   ├── EXP-09/
-│       │   ├── EXP-10/
-│       │   ├── BENCH-001/
-│       │   ├── BENCH-002/
-│       │   └── BENCH-003/
-│       └── evidence_manifest.json
+│   ├── 20260311T043751Z/ # historical validated run
+│   └── 20260318T060019Z/ # current canonical run
 ├── benchmarks_legacy/
 └── evidence_legacy/
 ```
@@ -84,10 +126,10 @@ licitra-sentry-evidence/
 
 The source of truth in this repository is the run archive under `runs/`.
 
-For the validated run `20260311T043751Z`, the top-level evidence manifest is:
+For the validated canonical run `20260318T060019Z`, the top-level evidence manifest is:
 
 ```
-runs/20260311T043751Z/evidence_manifest.json
+runs/20260318T060019Z/evidence_manifest.json
 ```
 
 The evidence manifest records:
@@ -181,7 +223,7 @@ The validated run includes **3 benchmark validation records**:
 Benchmark outputs are stored under:
 
 ```
-runs/20260311T043751Z/benchmarks/
+runs/20260318T060019Z/benchmarks/
 ```
 
 ---
@@ -207,8 +249,15 @@ To regenerate this artifact set:
 The validated reference run in this repository was produced from:
 
 ```
-run_id = 20260311T043751Z
+run_id = 20260318T060019Z
 ```
+
+The previous run (20260311T043751Z) is retained as a historical reference.
+
+For step-by-step instructions and environment setup, see:
+
+- `docs/how_to_run.md`
+- `docs/experiments.md`
 
 ---
 

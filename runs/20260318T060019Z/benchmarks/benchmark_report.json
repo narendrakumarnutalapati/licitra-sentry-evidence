@@ -1,0 +1,62 @@
+{
+  "schema_version": "1.0.0",
+  "artifact_type": "benchmark_report",
+  "run_id": "20260318T060019Z",
+  "timestamp_utc": "2026-03-18T06:01:35Z",
+  "status": "PASS",
+  "source_script": "experiments/benchmark_suite.py",
+  "raw_output": {
+    "metadata": {
+      "python": "3.12.7 (tags/v3.12.7:0b05ead, Oct  1 2024, 03:06:41) [MSC v.1941 64 bit (AMD64)]",
+      "platform": "win32",
+      "ts": "2026-03-18T06:01:26Z",
+      "benchmark_version": "v0.2",
+      "mmr_context": {
+        "reachable": true,
+        "base_url": "http://localhost:8000",
+        "status": "ok",
+        "service": "licitra-mmr",
+        "ledger_version": "mmr-v0.1",
+        "block_size": 2,
+        "dev_mode": true,
+        "ledger_mode": "experiment",
+        "timestamp_utc": "2026-03-18T06:01:26.294947Z"
+      }
+    },
+    "b1_sequential_full_pipeline": {
+      "count": 1000,
+      "rps": 199,
+      "p50_ms": 4.853,
+      "p95_ms": 6.195,
+      "p99_ms": 8.275,
+      "decisions": {
+        "APPROVED": 1000,
+        "REJECTED": 0
+      },
+      "audit_events": 5000
+    },
+    "b2_concurrent_full_pipeline": {
+      "count": 1000,
+      "threads": 20,
+      "rps": 228,
+      "p50_ms": 82.739,
+      "p95_ms": 116.761,
+      "p99_ms": 146.606,
+      "decisions": {
+        "APPROVED": 1000,
+        "REJECTED": 0
+      },
+      "audit_events": 10000
+    },
+    "b3_security_failure_checks": {
+      "replay_first_allowed": true,
+      "replay_second_allowed": false,
+      "replay_second_error": "REPLAY_DETECTED: Ticket 125752a2-e79b-4583-a41b-42a5e4b7d208 has already been used",
+      "tamper_allowed": false,
+      "tamper_error": "TICKET_INVALID: Request hash mismatch: payload modified after authorization"
+    }
+  },
+  "stdout": "LICITRA-SENTRY Benchmark Suite v0.2\nPython 3.12.7 (tags/v3.12.7:0b05ead, Oct  1 2024, 03:06:41) [MSC v.1941 64 bit (AMD64)]\n\n[MMR CONTEXT]\n{\n  \"reachable\": true,\n  \"base_url\": \"http://localhost:8000\",\n  \"status\": \"ok\",\n  \"service\": \"licitra-mmr\",\n  \"ledger_version\": \"mmr-v0.1\",\n  \"block_size\": 2,\n  \"dev_mode\": true,\n  \"ledger_mode\": \"experiment\",\n  \"timestamp_utc\": \"2026-03-18T06:01:26.294947Z\"\n}\n\n======================================================================\nBENCHMARK 1: v0.2 Full Pipeline Sequential\n======================================================================\n  199 RPS | p50=4.853ms p95=6.195ms p99=8.275ms\n  Decisions: {'APPROVED': 1000, 'REJECTED': 0} | Audit events: 5000\n\n======================================================================\nBENCHMARK 2: v0.2 Full Pipeline Concurrent\n======================================================================\n  228 RPS | p50=82.739ms p95=116.761ms p99=146.606ms\n  Decisions: {'APPROVED': 1000, 'REJECTED': 0} | Audit events: 10000\n\n======================================================================\nBENCHMARK 3: v0.2 Security Failure Checks\n======================================================================\n  Replay first allowed: True\n  Replay second allowed: False | REPLAY_DETECTED: Ticket 125752a2-e79b-4583-a41b-42a5e4b7d208 has already been used\n  Tamper allowed: False | TICKET_INVALID: Request hash mismatch: payload modified after authorization\n\n======================================================================\nSUMMARY\n======================================================================\n[B1] 199 RPS seq\n[B2] 228 RPS concurrent\n[B3] replay_second_allowed=False\n[B3] tamper_allowed=False\n\nResults: D:\\AI\\licitra-sentry\\experiments\\benchmark_results.json\n",
+  "stderr": "REJECTED tool=email-sender agent=agent-001 error=REPLAY_DETECTED: Ticket 125752a2-e79b-4583-a41b-42a5e4b7d208 has already been used\nREJECTED tool=email-sender agent=agent-001 error=TICKET_INVALID: Request hash mismatch: payload modified after authorization\n",
+  "exit_code": 0
+}

@@ -1,0 +1,33 @@
+{
+  "schema_version": "1.0.0",
+  "artifact_type": "benchmark_summary",
+  "run_id": "20260318T060019Z",
+  "timestamp_utc": "2026-03-18T06:01:35Z",
+  "status": "PASS",
+  "items": [
+    {
+      "record_id": "BENCH-001",
+      "name": "sequential_full_pipeline",
+      "status": "PASS",
+      "metric": "rps",
+      "value": 199,
+      "path": "artifacts/runs/20260318T060019Z/benchmarks/benchmark_report.json"
+    },
+    {
+      "record_id": "BENCH-002",
+      "name": "concurrent_full_pipeline",
+      "status": "PASS",
+      "metric": "rps",
+      "value": 228,
+      "path": "artifacts/runs/20260318T060019Z/benchmarks/benchmark_report.json"
+    },
+    {
+      "record_id": "BENCH-003",
+      "name": "security_failure_checks",
+      "status": "PASS",
+      "metric": "security_checks",
+      "value": "ok",
+      "path": "artifacts/runs/20260318T060019Z/benchmarks/benchmark_report.json"
+    }
+  ]
+}
